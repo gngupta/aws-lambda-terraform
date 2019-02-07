@@ -27,6 +27,5 @@ resource "aws_s3_bucket_notification" "prod_bucket_terraform_notification" {
   lambda_function {
     lambda_function_arn = "${aws_lambda_alias.prod_alias.arn}"
     events              = ["s3:ObjectCreated:*"]
-    filter_suffix       = "csv"
   }
 }

@@ -47,3 +47,27 @@ resource "aws_lambda_function" "lambda_function" {
     }
   }
 }
+
+# S3 bucket for DEFAULT alias
+resource "aws_s3_bucket" "s3_bucket_price_csv_processing" {
+  bucket = "xerox-price-csv-processing-bucket"
+}
+
+# Allow s3_bucket to invoke alias of lambda function
+resource "aws_lambda_permission" "allow_execution_from_s3_bucket" {
+  statement_id  = "AllowExecutionFromS3Bucket"
+  action        = "lambda:InvokeFunction"
+  function_name = "${aws_lambda_function.lambda_function.arn}"
+  principal     = "s3.amazonaws.com"
+  source_arn    = "${aws_s3_bucket.s3_bucket_price_csv_processing.arn}"
+}
+
+# Send notification from s3_bucket to alias of lambda function
+resource "aws_s3_bucket_notification" "bucket_terraform_notification" {
+  bucket = "${aws_s3_bucket.s3_bucket_price_csv_processing.id}"
+
+  lambda_function {
+    lambda_function_arn = "${aws_lambda_function.lambda_function.arn}"
+    events              = ["s3:ObjectCreated:*"]
+  }
+}
