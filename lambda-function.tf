@@ -27,9 +27,24 @@ EOF
 }
 
 # Attach policy to lambda role 
-resource "aws_iam_role_policy_attachment" "lambda_basic_execution_role" {
+resource "aws_iam_role_policy_attachment" "lambda_cloud_watch_full_access" {
   role       = "${aws_iam_role.iam_for_lambda.id}"
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole"
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_s3_full_access" {
+  role       = "${aws_iam_role.iam_for_lambda.id}"
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_sns_full_access" {
+  role       = "${aws_iam_role.iam_for_lambda.id}"
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_sqs_full_access" {
+  role       = "${aws_iam_role.iam_for_lambda.id}"
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSQSFullAccess"
 }
 
 # Create lambda function
