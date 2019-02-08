@@ -9,3 +9,7 @@ variable "secret_key" {
 variable "region" {
   default = "region"
 }
+
+variable "function_name" {
+  default = "XeroxPriceHandler"
+}
