@@ -18,6 +18,8 @@ variable "api_password" {}
 
 variable "currency" {}
 
+variable "price_xml_bucket" {}
+
 variable "price_csv_bucket" {}
 
 variable "queue_name" {}
@@ -25,3 +27,9 @@ variable "queue_name" {}
 variable "rest_api_url" {}
 
 variable "lamdba_trigger_bucket" {}
+
+variable "xml_conversion_fail" {}
+
+variable "xml_conversion_success" {}
+
+variable "file_transfer_error" {}

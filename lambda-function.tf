@@ -63,11 +63,12 @@ resource "aws_lambda_function" "lambda_function" {
       API_PASSWORD                      = "${var.api_password}"
       CURRENCY                          = "${var.currency}"
       PRICE_CSV_BUCKET                  = "${var.price_csv_bucket}"
+      PRICE_XML_BUCKET                  = "${var.price_xml_bucket}"
       QUEUE_NAME                        = "${var.queue_name}"
       REST_API_URL                      = "${var.rest_api_url}"
-      TOPIC_ARN_XML_CONVERSION_FAIL     = ""
-      TOPIC_ARN_XML_CONVERSION_SUCCESS  = ""
-      TOPIC_ARN_XML_FILE_TRANSFER_ERROR = ""
+      TOPIC_ARN_XML_CONVERSION_FAIL     = "${aws_sns_topic.price_xml_conversion_fail.arn}"
+      TOPIC_ARN_XML_CONVERSION_SUCCESS  = "${aws_sns_topic.price_xml_conversion_success.arn}"
+      TOPIC_ARN_XML_FILE_TRANSFER_ERROR = "${aws_sns_topic.file_transfer_error.arn}"
     }
   }
 }
@@ -80,7 +81,7 @@ resource "aws_s3_bucket" "s3_bucket_price_csv_processing" {
 # Allow s3_bucket to invoke alias of lambda function
 resource "aws_lambda_permission" "allow_execution_from_s3_bucket" {
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.lambda_function.arn}"
+  function_name = "${aws_lambda_function.lambda_function.function_name}"
   principal     = "s3.amazonaws.com"
   source_arn    = "${aws_s3_bucket.s3_bucket_price_csv_processing.arn}"
 }
