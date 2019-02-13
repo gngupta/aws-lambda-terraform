@@ -49,11 +49,11 @@ resource "aws_iam_role_policy_attachment" "lambda_sqs_full_access" {
 
 # Create lambda function
 resource "aws_lambda_function" "lambda_function" {
-  filename         = "PriceXMLConversionHandler-1.0.0.jar"
+  filename         = "${var.function_filename}"
   function_name    = "${var.function_name}"
   role             = "${aws_iam_role.iam_for_lambda.arn}"
   handler          = "${var.function_handler}"
-  source_code_hash = "${base64sha256(file("PriceXMLConversionHandler-1.0.0.jar"))}"
+  source_code_hash = "${base64sha256(file("${var.function_filename}"))}"
   runtime          = "${var.function_runtime}"
 
   #Add environment variables with values
@@ -74,7 +74,6 @@ resource "aws_s3_bucket" "s3_bucket_price_csv_processing" {
 
 # Allow s3_bucket to invoke alias of lambda function
 resource "aws_lambda_permission" "allow_execution_from_s3_bucket" {
-  statement_id  = "AllowExecutionFromS3Bucket"
   action        = "lambda:InvokeFunction"
   function_name = "${aws_lambda_function.lambda_function.arn}"
   principal     = "s3.amazonaws.com"

@@ -10,6 +10,8 @@ variable "function_handler" {}
 
 variable "function_runtime" {}
 
+variable "function_filename" {}
+
 variable "api_user" {}
 
 variable "api_password" {}

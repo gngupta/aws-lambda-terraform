@@ -13,7 +13,6 @@ resource "aws_s3_bucket" "test_s3_bucket_price_csv_processing" {
 
 # Allow test_s3_bucket to invoke prod_alias of lambda function
 resource "aws_lambda_permission" "allow_execution_from_test_s3_bucket" {
-  statement_id  = "AllowExecutionFromS3Bucket"
   action        = "lambda:InvokeFunction"
   function_name = "${aws_lambda_alias.test_alias.arn}"
   principal     = "s3.amazonaws.com"
