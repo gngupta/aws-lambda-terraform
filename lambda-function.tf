@@ -59,10 +59,15 @@ resource "aws_lambda_function" "lambda_function" {
   #Add environment variables with values
   environment {
     variables = {
-      API_USER         = "${var.api_user}"
-      API_PASSWORD     = "${var.api_password}"
-      CURRENCY         = "${var.currency}"
-      PRICE_CSV_BUCKET = "${var.price_csv_bucket}"
+      API_USER                          = "${var.api_user}"
+      API_PASSWORD                      = "${var.api_password}"
+      CURRENCY                          = "${var.currency}"
+      PRICE_CSV_BUCKET                  = "${var.price_csv_bucket}"
+      QUEUE_NAME                        = "${var.queue_name}"
+      REST_API_URL                      = "${var.rest_api_url}"
+      TOPIC_ARN_XML_CONVERSION_FAIL     = ""
+      TOPIC_ARN_XML_CONVERSION_SUCCESS  = ""
+      TOPIC_ARN_XML_FILE_TRANSFER_ERROR = ""
     }
   }
 }

@@ -20,4 +20,8 @@ variable "currency" {}
 
 variable "price_csv_bucket" {}
 
+variable "queue_name" {}
+
+variable "rest_api_url" {}
+
 variable "lamdba_trigger_bucket" {}

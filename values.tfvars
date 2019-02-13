@@ -10,6 +10,8 @@ api_user = "username"
 api_password = "thsh@34Hhdg^%"
 currency = "USD"
 price_csv_bucket = "xerox-price-csv-processing-bucket"
+queue_name = "pricequeue"
+rest_api_url = "https://testxerox.salnl.ne/INTERSHOP/rest/WFS/"
 
 # Lambda trigger
 lamdba_trigger_bucket = "xerox-price-csv-input-bucket"
