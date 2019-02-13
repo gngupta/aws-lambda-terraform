@@ -6,10 +6,8 @@ variable "secret_key" {
   default = "secret_key"
 }
 
-variable "region" {
-  default = "region"
-}
+variable "region" {}
 
-variable "function_name" {
-  default = "XeroxPriceHandler"
-}
+variable "function_name" {}
+
+variable "function_handler" {}

@@ -52,7 +52,7 @@ resource "aws_lambda_function" "lambda_function" {
   filename         = "PriceXMLConversionHandler-1.0.0.jar"
   function_name    = "${var.function_name}"
   role             = "${aws_iam_role.iam_for_lambda.arn}"
-  handler          = "com.amazonaws.salmon.xerox.lambda.price.XeroxPriceHandler::handleRequest"
+  handler          = "${var.function_handler}"
   source_code_hash = "${base64sha256(file("PriceXMLConversionHandler-1.0.0.jar"))}"
   runtime          = "java8"
 

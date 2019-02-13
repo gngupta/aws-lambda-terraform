@@ -1,5 +1,4 @@
 .terraform
-backend.tf
 secret.tfvars
 PriceXMLConversionHandler-1.0.0.jar
 terraform.tfstate*
