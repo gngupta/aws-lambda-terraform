@@ -1,13 +1,21 @@
-variable "access_key" {
-  default = "access_key"
-}
+variable "access_key" {}
 
-variable "secret_key" {
-  default = "secret_key"
-}
+variable "secret_key" {}
 
 variable "region" {}
 
 variable "function_name" {}
 
 variable "function_handler" {}
+
+variable "function_runtime" {}
+
+variable "api_user" {}
+
+variable "api_password" {}
+
+variable "currency" {}
+
+variable "price_csv_bucket" {}
+
+variable "lamdba_trigger_bucket" {}

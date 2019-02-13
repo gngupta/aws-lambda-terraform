@@ -54,18 +54,22 @@ resource "aws_lambda_function" "lambda_function" {
   role             = "${aws_iam_role.iam_for_lambda.arn}"
   handler          = "${var.function_handler}"
   source_code_hash = "${base64sha256(file("PriceXMLConversionHandler-1.0.0.jar"))}"
-  runtime          = "java8"
+  runtime          = "${var.function_runtime}"
 
+  #Add environment variables with values
   environment {
     variables = {
-      API_PASSWORD = "a5682hbshjggfusua897"
+      API_USER         = "${var.api_user}"
+      API_PASSWORD     = "${var.api_password}"
+      CURRENCY         = "${var.currency}"
+      PRICE_CSV_BUCKET = "${var.price_csv_bucket}"
     }
   }
 }
 
 # S3 bucket for DEFAULT alias
 resource "aws_s3_bucket" "s3_bucket_price_csv_processing" {
-  bucket = "xerox-price-csv-processing-bucket"
+  bucket = "${var.lamdba_trigger_bucket}"
 }
 
 # Allow s3_bucket to invoke alias of lambda function
