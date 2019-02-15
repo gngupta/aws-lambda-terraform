@@ -1,4 +1,10 @@
-.terraform
-secret.tfvars
-PriceXMLConversionHandler-1.0.0.jar
-terraform.tfstate*
+#  Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# .tfvars files
+*.tfvars
+!values.tfvars
