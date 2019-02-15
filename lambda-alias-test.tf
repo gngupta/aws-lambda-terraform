@@ -1,6 +1,6 @@
 # TEST alias for lambda function
 resource "aws_lambda_alias" "test_alias" {
-  name             = "TEST"
+  name             = "${var.test_alias_name}"
   description      = "Alias for TEST env"
   function_name    = "${aws_lambda_function.lambda_function.arn}"
   function_version = "$LATEST"

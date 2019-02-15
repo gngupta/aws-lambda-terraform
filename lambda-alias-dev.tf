@@ -1,6 +1,6 @@
 # DEV alias for lambda function
 resource "aws_lambda_alias" "dev_alias" {
-  name             = "DEV"
+  name             = "${var.dev_alias_name}"
   description      = "Alias for DEV env"
   function_name    = "${aws_lambda_function.lambda_function.arn}"
   function_version = "$LATEST"

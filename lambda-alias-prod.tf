@@ -1,6 +1,6 @@
 # PROD alias for lambda function
 resource "aws_lambda_alias" "prod_alias" {
-  name             = "PROD"
+  name             = "${var.prod_alias_name}"
   description      = "Alias for PROD env"
   function_name    = "${aws_lambda_function.lambda_function.arn}"
   function_version = "$LATEST"
